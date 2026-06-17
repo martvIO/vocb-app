@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// Personal-use security model: a signed-in user can read and write ONLY the
+// documents under their own users/{uid} subtree. Word entries are written by
+// the lookupWord Cloud Function (via the Admin SDK, which bypasses these
+// rules), but clients still read them directly, so reads must be allowed.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

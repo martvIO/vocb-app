@@ -1,0 +1,23 @@
+{
+  "indexes": [
+    {
+      "//": "Words in a deck, most-looked-up first.",
+      "collectionGroup": "words",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "deckIds", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "lookupCount", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "//": "Words with a given tag, most-looked-up first.",
+      "collectionGroup": "words",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "tags", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "lookupCount", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
