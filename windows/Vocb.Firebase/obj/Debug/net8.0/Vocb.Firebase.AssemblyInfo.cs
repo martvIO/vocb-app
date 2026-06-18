@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Vocb.Firebase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5548104e46bfc3082f18f24de4dced3a7b3210d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8d867bf8d341230ece18e51666e591b131366de")]
 [assembly: System.Reflection.AssemblyProductAttribute("Vocb.Firebase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Vocb.Firebase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
