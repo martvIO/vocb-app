@@ -1,0 +1,16 @@
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\bin\x64\Release\net8.0\Vocb.Firebase.deps.json
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\bin\x64\Release\net8.0\Vocb.Firebase.dll
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\bin\x64\Release\net8.0\Vocb.Firebase.pdb
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\bin\x64\Release\net8.0\Vocb.Core.dll
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\bin\x64\Release\net8.0\Vocb.Core.pdb
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.csproj.AssemblyReference.cache
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.AssemblyInfoInputs.cache
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.AssemblyInfo.cs
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.csproj.CoreCompileInputs.cache
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.sourcelink.json
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Fir.3D7995BA.Up2Date
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.dll
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\refint\Vocb.Firebase.dll
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\Vocb.Firebase.pdb
+C:\Users\user1\vocb-app\windows\Vocb.Firebase\obj\x64\Release\net8.0\ref\Vocb.Firebase.dll

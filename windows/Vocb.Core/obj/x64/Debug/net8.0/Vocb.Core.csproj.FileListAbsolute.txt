@@ -1,0 +1,12 @@
+C:\Users\user1\vocb-app\windows\Vocb.Core\bin\x64\Debug\net8.0\Vocb.Core.deps.json
+C:\Users\user1\vocb-app\windows\Vocb.Core\bin\x64\Debug\net8.0\Vocb.Core.dll
+C:\Users\user1\vocb-app\windows\Vocb.Core\bin\x64\Debug\net8.0\Vocb.Core.pdb
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.AssemblyInfoInputs.cache
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.AssemblyInfo.cs
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.csproj.CoreCompileInputs.cache
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.sourcelink.json
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.dll
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\refint\Vocb.Core.dll
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\Vocb.Core.pdb
+C:\Users\user1\vocb-app\windows\Vocb.Core\obj\x64\Debug\net8.0\ref\Vocb.Core.dll

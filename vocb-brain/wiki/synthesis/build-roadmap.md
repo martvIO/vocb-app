@@ -15,12 +15,12 @@ Phased plan and current progress (status as of 2026-06-17).
 - **Phase 2 — [[VocabKit]]:** models, [[SM-2 Spaced Repetition]] engine, service protocols, tests. ✅ **Authored**, ⏳ unverified (needs `swift test` on the Mac).
 - **Phase 3 — iPad + macOS app:** SwiftUI app — `VocbApp`, `AppModel`, `FirebaseRepository`, `FunctionsLookupService`, and views (word list by lookupCount, detail w/ pronunciation, SM-2 study, in-app reader, sign-in, settings/reminders). ✅ **Authored**, ⏳ unverified (needs Xcode on the Mac).
 - **Phase 4 — Capture:** iOS Share + Action extensions; macOS menu-bar agent (`GlobalHotkey` Carbon, `AccessibilitySelection` AX API, `OverlayController` NSPanel) — see [[Text Capture Strategy]]. ✅ **Authored**, ⏳ unverified.
-- **Phase 5 — Windows ([[WinUI 3]]):** `Vocb.Core` (✅ **11 xUnit tests pass**), `Vocb.Firebase` REST client (✅ **compiles clean**), `Vocb.App` WinUI 3 (tray/hotkey/clipboard capture/overlay/screens — ✅ authored, needs the Windows App SDK to build).
+- **Phase 5 — Windows ([[WinUI 3]]):** `Vocb.Core` (✅ **11 xUnit tests pass**), `Vocb.Firebase` REST client (✅ **compiles clean**), `Vocb.App` WinUI 3 (tray/hotkey/clipboard capture/overlay/screens — ✅ **builds** with `-p:Platform=x64`, 0 errors; needs the Windows App Runtime to launch).
 - **Phase 6 — Polish:** ✅ **monthly spend guard** implemented in the [[lookupWord Function]] (`usage.ts`, cap via `VOCAB_MONTHLY_CAP`, unit-tested) + sync-conflict notes (`docs/sync-notes.md`). Remaining: offline queue, stats dashboard, prompt-quality tuning (see [[Cloud Sync Architecture]]).
 
 ## Verification status (2026-06-17)
-- **Verified on this Windows PC:** backend (23 Vitest tests + `tsc`), Windows `Vocb.Core` (11 xUnit tests), `Vocb.Firebase` (builds).
-- **Authored, unverified (need a Mac / Windows App SDK / live Firebase):** all Apple code, the WinUI `Vocb.App`, and the end-to-end `lookupWord` emulator path.
+- **Verified on this Windows PC:** backend (23 Vitest tests + `tsc`), Windows `Vocb.Core` (11 xUnit tests), `Vocb.Firebase` (builds), and `Vocb.App` WinUI 3 (**compiles**, x64).
+- **Authored, not yet run:** all Apple code (needs a Mac), the WinUI app's runtime behavior (needs the Windows App Runtime + a live Firebase project), and the end-to-end `lookupWord` emulator path.
 
 ## Immediate next steps
 1. Backend: create the Firebase project, set the `ANTHROPIC_API_KEY` secret, run the emulator acceptance test, deploy.
