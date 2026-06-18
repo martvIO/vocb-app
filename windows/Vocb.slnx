@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Vocb.App/Vocb.App.csproj" />
+  <Project Path="Vocb.Core.Tests/Vocb.Core.Tests.csproj" />
+  <Project Path="Vocb.Core/Vocb.Core.csproj" />
+  <Project Path="Vocb.Firebase/Vocb.Firebase.csproj" />
+</Solution>

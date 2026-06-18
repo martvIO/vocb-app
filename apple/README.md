@@ -30,18 +30,25 @@ swift build
 swift test
 ```
 
-## Next steps (need the Mac)
+## App, extensions, and agent (authored — assemble in Xcode)
 
-1. Create the Xcode project; add VocabKit as a local Swift package.
-2. Add Firebase via SPM (`FirebaseAuth`, `FirebaseFirestore`, `FirebaseFunctions`).
-3. Implement the protocols:
-   - `LookupServicing` → call the `lookupWord` callable (see
-     [docs/backend-setup.md](../docs/backend-setup.md) §6).
-   - `VocabRepository` → Firestore reads/writes under `users/{uid}/…`.
-4. Build the SwiftUI screens (word list sorted by `lookupCount`, word detail with
-   pronunciation, study modes driven by `SRSEngine`, decks/tags, in-app reader,
-   daily review reminders).
-5. Add the iOS Share/Action extensions and the macOS menu-bar agent
-   (global hotkey + Accessibility selection + overlay).
+All Swift source is written; it needs an Xcode project on a Mac to compile.
+**Status: authored, not yet compiled** — verify by building on the cloud Mac.
+
+- **[App/](App)** — the shared iPad + macOS SwiftUI app:
+  - `VocbApp.swift` (`@main`), `AppModel.swift` (auth + data + lookup state).
+  - `Services/FirebaseRepository.swift` implements VocabKit's `VocabRepository` (Firestore); `Services/FunctionsLookupService.swift` implements `LookupServicing` (the `lookupWord` callable).
+  - `Views/` — `RootView` (auth gate + tabs), `SignInView`, `WordListView` (sorted by `lookupCount`), `WordDetailView` (pronunciation), `StudyView` (SM-2 flip cards), `ReaderView` (tap-a-word), `SettingsView`.
+  - `Audio/Pronunciation.swift`, `Notifications/ReviewReminders.swift`.
+- **[ShareExtension/](ShareExtension)** + **[ActionExtension/](ActionExtension)** — iOS capture: receive selected text from the Share sheet / selection callout → `lookupWord`.
+- **[macOSAgent/](macOSAgent)** — background menu-bar agent: `GlobalHotkey` (Carbon, ⌃⇧L), `AccessibilitySelection` (AX API), `OverlayController` (floating `NSPanel`), `AgentAppDelegate` (`NSStatusItem`).
+
+### Assembling in Xcode
+
+1. New Xcode project with **iOS + macOS** app targets; add **VocabKit** as a local Swift package and the `App/` sources.
+2. Add Firebase via SPM: `FirebaseAuth`, `FirebaseFirestore`, `FirebaseFunctions`; drop in `GoogleService-Info.plist`.
+3. Add targets for the **Share Extension**, **Action Extension**, and the **macOS agent** (set `LSUIElement=YES` on the agent).
+4. Capabilities: an **App Group** + **Keychain Sharing** (so extensions share the signed-in user), **Accessibility** usage for the macOS agent, and notifications for reminders.
+5. Build/run; on macOS grant Accessibility permission when prompted.
 
 See the full plan at `.claude/plans/the-goal-of-this-hashed-map.md`.

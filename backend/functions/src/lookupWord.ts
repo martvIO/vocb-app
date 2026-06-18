@@ -7,6 +7,7 @@ import { normalize } from "./lemma";
 import { lookupDictionary } from "./dictionary";
 import { generate, DEFAULT_MODEL } from "./claude";
 import { buildEntry } from "./entry";
+import { monthKey, isOverCap } from "./usage";
 import { LookupRequest, LookupResponse, WordEntry } from "./types";
 
 const ANTHROPIC_API_KEY = defineSecret("ANTHROPIC_API_KEY");
@@ -59,6 +60,17 @@ export const lookupWord = onCall(
       return { entry: updated.data() as WordEntry, created: false };
     }
 
+    // Spend guard: stop generating new entries once the monthly cap is hit.
+    // (Cache hits above are unaffected — only new-lemma generation is capped.)
+    const usageRef = db.doc(`users/${uid}/usage/${monthKey()}`);
+    const used = ((await usageRef.get()).data()?.generations as number | undefined) ?? 0;
+    if (isOverCap(used)) {
+      throw new HttpsError(
+        "resource-exhausted",
+        "Monthly lookup limit reached. Raise VOCAB_MONTHLY_CAP or try next month."
+      );
+    }
+
     // Slow path: generate the entry (dictionary + Claude) outside any txn.
     // For single words, look the dictionary up by the base form (the lemma).
     const dictionaryTerm = norm.kind === "word" ? norm.key : norm.display;
@@ -92,6 +104,11 @@ export const lookupWord = onCall(
 
     if (created) {
       logger.info("created word entry", { uid, key: norm.key, kind: norm.kind });
+      // Count the generation against this month's cap.
+      await usageRef.set(
+        { generations: FieldValue.increment(1), updatedAt: now },
+        { merge: true }
+      );
     }
 
     const finalSnap = await ref.get();

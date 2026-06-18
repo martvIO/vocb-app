@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Vocb.App.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="12" MaxWidth="520" HorizontalAlignment="Left">
+            <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold" />
+
+            <TextBlock Text="Firebase project" FontWeight="SemiBold" Margin="0,8,0,0" />
+            <TextBox x:Name="ApiKeyBox" Header="Web API key" />
+            <TextBox x:Name="ProjectIdBox" Header="Project ID" />
+            <TextBox x:Name="RegionBox" Header="Functions region" Text="us-central1" />
+
+            <TextBlock Text="Account" FontWeight="SemiBold" Margin="0,8,0,0" />
+            <TextBox x:Name="EmailBox" Header="Email" />
+            <PasswordBox x:Name="PasswordBox" Header="Password" />
+
+            <Button x:Name="SignInButton" Content="Save &amp; sign in" Click="SignIn_Click" Margin="0,8,0,0" />
+            <TextBlock x:Name="StatusText" Foreground="Gray" TextWrapping="Wrap" />
+
+            <TextBlock Margin="0,16,0,0" Foreground="Gray" TextWrapping="Wrap"
+                       Text="Tip: select text in any app and press Ctrl+Shift+L to look it up. It's auto-saved and counted." />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

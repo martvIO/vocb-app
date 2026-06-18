@@ -27,5 +27,7 @@ Three native clients share one cloud backend:
 - **Platform-specific capture** is the riskiest surface: iOS is Share-Sheet-only; macOS/Windows get tray + hotkey + overlay.
 
 ## Current status (2026-06-17)
-Backend built and verified (compiles; normalizer runtime-tested). VocabKit authored but not yet compiled (needs the
-cloud Mac). Apple app UI, extensions, and the Windows app are not started — see [[Build Roadmap]].
+All phases now have code. **Verified on the dev PC:** the backend (23 Vitest tests + spend guard) and the Windows
+`Vocb.Core` (11 xUnit tests) + `Vocb.Firebase` (compiles). **Authored but unverified** (need a Mac / Windows App SDK /
+live Firebase): the full Apple app + extensions + macOS agent, the WinUI `Vocb.App`, and the end-to-end `lookupWord`
+emulator path. See [[Build Roadmap]] for the per-phase breakdown.
