@@ -40,7 +40,15 @@ struct ReaderView: View {
         }
         .padding()
         .navigationTitle("Reader")
-        .navigationDestination(item: $result) { WordDetailView(entry: $0) }
+        .sheet(item: $result) { entry in
+            let card = WordPopupCard(entry: entry) { result = nil }
+            #if os(iOS)
+            // A small, draggable popup card rather than a full-screen push.
+            card.presentationDetents([.height(280), .medium])
+            #else
+            card.frame(minWidth: 360, minHeight: 220).padding()
+            #endif
+        }
     }
 
     private func lookUp(_ word: String) {
