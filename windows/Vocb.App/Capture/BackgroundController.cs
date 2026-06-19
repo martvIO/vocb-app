@@ -36,7 +36,7 @@ public sealed class BackgroundController : IDisposable
 
             if (!_session.IsSignedIn)
             {
-                OverlayWindow.ShowMessage("Sign in (Settings) to look up words.");
+                OverlayWindow.ShowMessage("Sign in to Vocb to look up words.");
                 return;
             }
 

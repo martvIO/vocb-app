@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- Windows target so the tests can exercise SessionStore (DPAPI is Windows-only). -->
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -15,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vocb.Core\Vocb.Core.csproj" />
+    <ProjectReference Include="..\Vocb.Firebase\Vocb.Firebase.csproj" />
   </ItemGroup>
 
 </Project>

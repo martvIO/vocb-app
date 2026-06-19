@@ -30,17 +30,44 @@ public sealed class FirebaseAuthClient
     public Task<AuthSession> SignUpAsync(string email, string password, CancellationToken ct = default)
         => PostPasswordAsync("accounts:signUp", email, password, ct);
 
+    /// <summary>Send a password-reset email to the given address.</summary>
+    public async Task SendPasswordResetAsync(string email, CancellationToken ct = default)
+    {
+        var url = $"https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={_config.ApiKey}";
+        var resp = await _http.PostAsJsonAsync(url,
+            new { requestType = "PASSWORD_RESET", email }, ct);
+        if (!resp.IsSuccessStatusCode)
+            throw await ReadAuthErrorAsync(resp, ct);
+    }
+
     private async Task<AuthSession> PostPasswordAsync(string method, string email, string password, CancellationToken ct)
     {
         var url = $"https://identitytoolkit.googleapis.com/v1/{method}?key={_config.ApiKey}";
         var resp = await _http.PostAsJsonAsync(url,
             new { email, password, returnSecureToken = true }, ct);
-        resp.EnsureSuccessStatusCode();
+        if (!resp.IsSuccessStatusCode)
+            throw await ReadAuthErrorAsync(resp, ct);
         var body = await resp.Content.ReadFromJsonAsync<PasswordResponse>(cancellationToken: ct)
                    ?? throw new InvalidOperationException("Empty auth response.");
         return new AuthSession(
             body.LocalId, body.IdToken, body.RefreshToken,
             DateTimeOffset.UtcNow.AddSeconds(ParseInt(body.ExpiresIn)));
+    }
+
+    /// <summary>
+    /// Turn a failed Identity Toolkit response into a <see cref="FirebaseAuthException"/>
+    /// with a user-friendly message (e.g. EMAIL_NOT_FOUND → "No account found…").
+    /// </summary>
+    private static async Task<FirebaseAuthException> ReadAuthErrorAsync(HttpResponseMessage resp, CancellationToken ct)
+    {
+        string? code = null;
+        try
+        {
+            var body = await resp.Content.ReadFromJsonAsync<ErrorEnvelope>(cancellationToken: ct);
+            code = body?.Error?.Message;
+        }
+        catch { /* non-JSON or empty body — fall back to a generic message */ }
+        return new FirebaseAuthException(FirebaseAuthError.Friendly(code), code);
     }
 
     /// <summary>Exchange a refresh token for a fresh id token.</summary>
@@ -77,5 +104,16 @@ public sealed class FirebaseAuthClient
         [JsonPropertyName("id_token")] public string IdToken { get; set; } = "";
         [JsonPropertyName("refresh_token")] public string RefreshToken { get; set; } = "";
         [JsonPropertyName("expires_in")] public string ExpiresIn { get; set; } = "3600";
+    }
+
+    private sealed class ErrorEnvelope
+    {
+        [JsonPropertyName("error")] public ErrorBody? Error { get; set; }
+
+        public sealed class ErrorBody
+        {
+            [JsonPropertyName("code")] public int Code { get; set; }
+            [JsonPropertyName("message")] public string? Message { get; set; }
+        }
     }
 }

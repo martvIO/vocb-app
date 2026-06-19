@@ -16,7 +16,14 @@
         <Border Grid.Row="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                 CornerRadius="12" Padding="24" VerticalAlignment="Center">
             <StackPanel Spacing="12" HorizontalAlignment="Center">
-                <TextBlock x:Name="PromptText" FontSize="26" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                    <TextBlock x:Name="PromptText" FontSize="26" FontWeight="SemiBold" VerticalAlignment="Center" />
+                    <Button x:Name="SpeakButton" Background="Transparent" BorderThickness="0" Padding="6"
+                            Click="Speak_Click" Visibility="Collapsed" VerticalAlignment="Center"
+                            ToolTipService.ToolTip="Pronounce">
+                        <FontIcon Glyph="&#xE767;" FontSize="18" />
+                    </Button>
+                </StackPanel>
                 <StackPanel x:Name="AnswerPanel" Spacing="8" Visibility="Collapsed">
                     <TextBlock x:Name="DefinitionText" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
                     <TextBlock x:Name="ExampleText" TextWrapping="Wrap" FontStyle="Italic" Foreground="Gray"

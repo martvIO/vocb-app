@@ -6,18 +6,29 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     Title="Vocb">
 
-    <controls:NavigationView x:Name="Nav"
-                             IsBackButtonVisible="Collapsed"
-                             IsSettingsVisible="False"
-                             SelectionChanged="Nav_SelectionChanged">
-        <controls:NavigationView.MenuItems>
-            <controls:NavigationViewItem Content="Words" Tag="words" IsSelected="True" />
-            <controls:NavigationViewItem Content="Study" Tag="study" />
-        </controls:NavigationView.MenuItems>
-        <controls:NavigationView.FooterMenuItems>
-            <controls:NavigationViewItem Content="Settings" Tag="settings" />
-        </controls:NavigationView.FooterMenuItems>
+    <Grid>
+        <!-- Shown briefly on launch while we try to restore a saved session. -->
+        <ProgressRing x:Name="LoadingRing" IsActive="True" Width="48" Height="48"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <Frame x:Name="ContentFrame" />
-    </controls:NavigationView>
+        <!-- Signed-out: the login screen. -->
+        <Frame x:Name="LoginFrame" Visibility="Collapsed" />
+
+        <!-- Signed-in: the app shell. -->
+        <controls:NavigationView x:Name="Nav"
+                                 Visibility="Collapsed"
+                                 IsBackButtonVisible="Collapsed"
+                                 IsSettingsVisible="False"
+                                 SelectionChanged="Nav_SelectionChanged">
+            <controls:NavigationView.MenuItems>
+                <controls:NavigationViewItem x:Name="WordsItem" Content="Words" Tag="words" />
+                <controls:NavigationViewItem Content="Study" Tag="study" />
+            </controls:NavigationView.MenuItems>
+            <controls:NavigationView.FooterMenuItems>
+                <controls:NavigationViewItem Content="Settings" Tag="settings" />
+            </controls:NavigationView.FooterMenuItems>
+
+            <Frame x:Name="ContentFrame" />
+        </controls:NavigationView>
+    </Grid>
 </Window>

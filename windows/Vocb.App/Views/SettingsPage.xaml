@@ -5,20 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ScrollViewer>
-        <StackPanel Padding="24" Spacing="12" MaxWidth="520" HorizontalAlignment="Left">
+        <StackPanel Padding="24" Spacing="16" MaxWidth="520" HorizontalAlignment="Left">
             <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold" />
 
-            <TextBlock Text="Firebase project" FontWeight="SemiBold" Margin="0,8,0,0" />
-            <TextBox x:Name="ApiKeyBox" Header="Web API key" />
-            <TextBox x:Name="ProjectIdBox" Header="Project ID" />
-            <TextBox x:Name="RegionBox" Header="Functions region" Text="us-central1" />
+            <TextBlock Text="Account" FontWeight="SemiBold" />
+            <TextBlock x:Name="EmailText" Foreground="Gray" />
+            <Button x:Name="LogoutButton" Content="Log out" Click="Logout_Click" />
 
-            <TextBlock Text="Account" FontWeight="SemiBold" Margin="0,8,0,0" />
-            <TextBox x:Name="EmailBox" Header="Email" />
-            <PasswordBox x:Name="PasswordBox" Header="Password" />
-
-            <Button x:Name="SignInButton" Content="Save &amp; sign in" Click="SignIn_Click" Margin="0,8,0,0" />
-            <TextBlock x:Name="StatusText" Foreground="Gray" TextWrapping="Wrap" />
+            <TextBlock Text="Daily review reminder" FontWeight="SemiBold" Margin="0,8,0,0" />
+            <ToggleSwitch x:Name="ReminderToggle" Header="Remind me to review"
+                          OnContent="On" OffContent="Off" Toggled="Reminder_Changed" />
+            <TimePicker x:Name="ReminderTime" Header="Time" SelectedTimeChanged="ReminderTime_Changed" />
+            <TextBlock Foreground="Gray" FontSize="12" TextWrapping="Wrap"
+                       Text="Reminders show while Vocb is running in the background." />
 
             <TextBlock Margin="0,16,0,0" Foreground="Gray" TextWrapping="Wrap"
                        Text="Tip: select text in any app and press Ctrl+Shift+L to look it up. It's auto-saved and counted." />

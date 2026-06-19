@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Windows DPAPI for SessionStore (encrypts the persisted refresh token). -->
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Vocb.Core\Vocb.Core.csproj" />
   </ItemGroup>
 

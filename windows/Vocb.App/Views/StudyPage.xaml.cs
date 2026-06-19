@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Vocb.App.Services;
 using Vocb.App.ViewModels;
 using Vocb.Core;
 
@@ -35,6 +36,7 @@ public sealed partial class StudyPage : Page
         if (!_vm.HasCard)
         {
             PromptText.Text = "🎉";
+            SpeakButton.Visibility = Visibility.Collapsed;
             DefinitionText.Text = "";
             ExampleText.Text = "";
             StatusText.Text = _vm.Status.Length > 0 ? _vm.Status : "All caught up!";
@@ -45,6 +47,7 @@ public sealed partial class StudyPage : Page
 
         var word = _vm.Current!;
         PromptText.Text = word.Text;
+        SpeakButton.Visibility = Visibility.Visible;
         DefinitionText.Text = string.IsNullOrEmpty(word.LearnerDefinition)
             ? (word.Senses.FirstOrDefault()?.Meaning ?? "")
             : word.LearnerDefinition;
@@ -62,6 +65,12 @@ public sealed partial class StudyPage : Page
         AnswerPanel.Visibility = Visibility.Visible;
         RevealButton.Visibility = Visibility.Collapsed;
         SetGradingVisible(true);
+    }
+
+    private void Speak_Click(object sender, RoutedEventArgs e)
+    {
+        if (_vm.Current is { } word)
+            Speech.Pronounce(word.Text, word.AudioUrl);
     }
 
     private async void Grade_Click(object sender, RoutedEventArgs e)

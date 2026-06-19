@@ -9,25 +9,39 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Words" FontSize="28" FontWeight="SemiBold" />
-        <TextBlock x:Name="StatusText" Grid.Row="1" Foreground="Gray" />
 
-        <ListView Grid.Row="2" x:Name="WordsList">
+        <InfoBar Grid.Row="1" x:Name="FirstRunHint" IsOpen="False" IsClosable="True"
+                 Severity="Informational" Title="Quick tip"
+                 Message="Select text in any app and press Ctrl+Shift+L to look it up — it's saved here."
+                 CloseButtonClick="FirstRunHint_Closed" />
+
+        <TextBlock x:Name="StatusText" Grid.Row="2" Foreground="Gray" />
+
+        <ListView Grid.Row="3" x:Name="WordsList">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="core:WordEntry">
                     <Grid ColumnSpacing="12" Padding="0,8">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="{x:Bind Text}" FontWeight="SemiBold" FontSize="16" />
                             <TextBlock Text="{x:Bind LearnerDefinition}" TextWrapping="Wrap" Foreground="Gray" />
                         </StackPanel>
-                        <Border Grid.Column="1" VerticalAlignment="Center"
+                        <Button Grid.Column="1" VerticalAlignment="Center"
+                                Background="Transparent" BorderThickness="0" Padding="6"
+                                Click="Speak_Click" Tag="{x:Bind}"
+                                ToolTipService.ToolTip="Pronounce">
+                            <FontIcon Glyph="&#xE767;" FontSize="16" />
+                        </Button>
+                        <Border Grid.Column="2" VerticalAlignment="Center"
                                 Background="{ThemeResource AccentFillColorDefaultBrush}"
                                 CornerRadius="10" Padding="8,2">
                             <TextBlock Text="{x:Bind LookupCount}" Foreground="White" />
